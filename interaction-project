@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+    // variable I need for mousePressed
+      var value = 0
+      //This creates the canvas
+        function setup() {
+            createCanvas(800,700);
+            fill(value);
+            //ellipse(400,150,50,50)
+            //This makes the circle come at a steady speed
+            frameRate(4)
+            
+           
+        }
+
+        function draw() {
+            fill("red")
+           // line(0,0,mouseX,mouseY)
+           // line(width,0,mouseX,mouseY)
+           //Makes circles in random places the same size
+            ellipse(random(750), random(6450), (75))
+            //    if (frameCount == 100){
+            //clear()
+            //frameCount = 0;
+         //}
+        }
+            
+           function mouseClicked() {
+               //This makes the white circle's outline also white
+               stroke("white")
+               /*This makes the cicrle white and makes the circle follow the mouse*/
+               fill("white")
+               ellipse(mouseX,mouseY,50,50)
+               
+               
+              // if (value == 0) {
+                //   value = 255;
+                  //  } else {
+                    //    value = 0;
+                        
+                    //}
+               
+           }
+          // ellipse(mouseX,mouseY,50,50)
+        
+            /*This makes it so the circle isnt being drawn everywhere the mouse goes, but instead when the mouse is clicked*/
+        function mousePressed(){
+        if (value == 0) {
+            value = 300;}
+             else {
+                value = 0;
+             }
+             
+        }
+
+        {
+            //This makes it so ant key can be pressed instead of having to click the mouse
+        function keyPressed() {
+        if (value === 0) {
+        value = 255;
+        } else {
+        value = 0;
+        }
+    }
+}
+  
+            
+   </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/MohammedAmin/p5js/blob/gh-pages/interaction-project.html?footer=0"></script>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+</html>
