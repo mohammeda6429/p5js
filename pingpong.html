@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+       //varaiables being made and puting a value on them
+        var ballX;
+        var ballY;
+        var ballSpeedX = 0;
+        var ballSpeedY =  0;
+        var paddleHeight = 30;
+        var paddleWidth = 200;
+
+        function setup() {
+            createCanvas(800, 600);
+            //making the cursor disappear when the game is being played
+            noCursor();
+            ballX = width / 2;
+            ballY = height / 2;
+        }
+
+        function draw() {
+            //make background blue
+            background(33,100,166);
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+        
+        }
+            function keyPressed() {
+            if(keyCode == TAB) { // detects if Tab was pressed
+            //if tab key is pressed the ball will freeze in place
+                ballSpeedX = 0;  
+                ballSpeedY = 0; 
+                
+            }
+            else { // detects if any of the other keys are pressed
+            //if anything else besides "Tab" is pressed the ball will speed up and move in different directions
+                ballSpeedX+= 5; 
+                ballSpeedY+= 5;
+                
+            }
+        }
+        
+
+        function moveBall() {
+            //this makes the ball move depending on what is happeing around it
+            ballX = ballX + ballSpeedX;
+            ballY = ballY + ballSpeedY;
+
+            console.log("ballSpeedX: " + ballSpeedX + 
+                               ", ballSpeedY: " + ballSpeedY);
+        }
+        //checks if the ball hits the paddle and detemines speed of the ball
+        function checkCollide() {
+            if (ballX < 0 || ballX > width) {
+                ballSpeedX = ballSpeedX * -1;
+            }
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;
+            }
+            if (ballY > height - paddleHeight) {
+                if (ballX > mouseX && ballX < mouseX + 200) {
+                    ballSpeedY = ballSpeedY * -1;
+                    paddleWidth =paddleWidth - 10;
+                    ballSpeedY -= 4
+                    paddleHeight -= 2
+                }
+                else {
+                    text("GAME OVER!", width / 2, height / 2);
+                    noLoop();
+                }
+            }
+        }
+        //This code makes the ball
+        function drawBall() {
+            fill("red")
+            noStroke();
+            ellipse(ballX, ballY, 20, 20);
+            
+        }
+        
+       //This makes the paddle
+        function drawPaddle() {
+            fill("red")
+            strokeWeight(4);
+            rect(mouseX, height - paddleHeight - 4, paddleWidth, paddleHeight);
+        }
+        //starts the code off with a certain speed
+        function mousePressed(){
+            background(33,100,166);
+            ballSpeedX = 5
+            ballSpeedY = 5
+            
+            
+        }
+   //    function keyPressed(){
+ //       (ballX ,ballY)
+   //     fill(random)
+            
+   //    }
+       
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/mohammeda6429/p5js/blob/gh-pages/PingPong.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
